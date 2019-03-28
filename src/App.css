@@ -1,12 +1,24 @@
-h1 {
-  font-family: "source-sans-pro", sans-serif;
-  font-style: normal;
-  font-weight: 600;
+body {
+	font-family: "source-sans-pro", sans-serif;
+	font-style: normal;
+	color: #2f2f2f;
+}
+
+a {
+	color: #4c67b8;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+	font-weight: 600;
 }
 
 ::selection {
-  background: #748bce; /* WebKit/Blink Browsers */
+	background: #748bce; /* WebKit/Blink Browsers */
 }
 ::-moz-selection {
-  background: #748bce; /* Gecko Browsers */
+	background: #748bce; /* Gecko Browsers */
 }
