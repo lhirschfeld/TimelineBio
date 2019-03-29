@@ -21,12 +21,25 @@ export class Timeline extends Component<TimelineProps> {
 					style={{
 						maxWidth: page.width,
 						margin: "auto",
-						height: 50
+						height: 20
 					}}
 				>
+					{/* <div
+						style={{
+							color: "#fff",
+							fontSize: 10,
+							fontWeight: 600,
+							position: "absolute",
+							marginTop: 3,
+							width: "100%"
+						}}
+					>
+						<span style={{ marginLeft: 5 }}> 2016</span>
+					</div> */}
 					<svg
 						style={{
-							width: "100%"
+							width: "100%",
+							height: 20
 						}}
 					>
 						{this.props.context.map((context, index) => <TimelineContext context={context} key={index} />)}
@@ -35,6 +48,7 @@ export class Timeline extends Component<TimelineProps> {
 							.map((event, index) => <TimelineEvent event={event} key={index} />)}
 					</svg>
 				</div>
+				<div style={{ height: 50 }} />
 			</div>
 		);
 	}

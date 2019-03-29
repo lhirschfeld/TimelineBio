@@ -26,7 +26,12 @@ export class TimelineEvent extends Component<TimelineContextProps> {
 				width={`${end - start}%`}
 				height={timeline.height}
 				fill={this.props.context.color}
-			/>
+			>
+				<title>
+					{this.props.context.name} - {this.props.context.startDate.toLocaleDateString()} to{" "}
+					{this.props.context.endDate.toLocaleDateString()}
+				</title>
+			</rect>
 		);
 	}
 }

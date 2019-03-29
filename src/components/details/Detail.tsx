@@ -11,7 +11,7 @@ export interface DetailProp {
 export class Detail extends Component<DetailProp> {
 	render() {
 		let event = this.props.event;
-		let header = <h3 style={{ marginTop: 0, display: "inline-flex" }}>{event.name}</h3>;
+		let header = <h3 style={{ marginTop: 0 }}>{event.name}</h3>;
 		return (
 			<div
 				style={{
@@ -28,14 +28,19 @@ export class Detail extends Component<DetailProp> {
 			>
 				<FontAwesomeIcon
 					style={{
-						verticalAlign: "center",
+						verticalAlign: "middle",
 						marginRight: 10,
-						marginBottom: 1
+						marginBottom: 4
 					}}
 					icon={[ event.icon()[0], event.icon()[1] ]}
 					size="sm"
 				/>
-				{event.link !== null ? <a href={event.link}>{header}</a> : header}
+				<div style={{ marginTop: 0, display: "inline-flex" }}>
+					{event.link !== null ? <a href={event.link}>{header}</a> : header}
+					<h3 style={{ fontWeight: 300, marginLeft: 5, verticalAlign: "middle", marginTop: 0 }}>
+						{event.date.toLocaleDateString()}
+					</h3>
+				</div>
 				<p style={{ fontWeight: 200, fontSize: 18, marginTop: 0, marginBottom: 0 }}>{this.props.event.description}</p>
 			</div>
 		);

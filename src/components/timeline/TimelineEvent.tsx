@@ -40,7 +40,11 @@ export class TimelineEvent extends Component<TimelineEventProps> {
 				stroke={colors.offBlack}
 				strokeWidth={timeline.stroke}
 				fill="#fff"
-			/>
+			>
+				<title>
+					{this.props.event.name} - {this.props.event.date.toLocaleDateString()}
+				</title>
+			</circle>
 		);
 	}
 }
