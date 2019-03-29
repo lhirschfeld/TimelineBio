@@ -1,15 +1,17 @@
 import React, { Component } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { Info } from "../../api/info";
+import { Event, Context } from "../../api/info";
 
 export interface DetailProp {
-	info: Info;
+	event: Event;
+	context: Context[];
 }
 
 export class Detail extends Component<DetailProp> {
 	render() {
-		let info = this.props.info;
-		let header = <h3 style={{ marginTop: 0 }}>{info.name}</h3>;
+		let event = this.props.event;
+		let header = <h3 style={{ marginTop: 0, display: "inline-flex" }}>{event.name}</h3>;
 		return (
 			<div
 				style={{
@@ -19,13 +21,22 @@ export class Detail extends Component<DetailProp> {
 					padding: 25,
 					paddingLeft: 20,
 					marginBottom: 10,
-					borderLeftColor: info.categoryColor(),
+					borderLeftColor: event.getColor(this.props.context),
 					borderLeftWidth: 10,
 					borderLeftStyle: "solid"
 				}}
 			>
-				{info.link !== null ? <a href={info.link}>{header}</a> : header}
-				<p style={{ fontWeight: 200, fontSize: 18, marginTop: 0, marginBottom: 0 }}>{this.props.info.description}</p>
+				<FontAwesomeIcon
+					style={{
+						verticalAlign: "center",
+						marginRight: 10,
+						marginBottom: 1
+					}}
+					icon={[ event.icon()[0], event.icon()[1] ]}
+					size="sm"
+				/>
+				{event.link !== null ? <a href={event.link}>{header}</a> : header}
+				<p style={{ fontWeight: 200, fontSize: 18, marginTop: 0, marginBottom: 0 }}>{this.props.event.description}</p>
 			</div>
 		);
 	}

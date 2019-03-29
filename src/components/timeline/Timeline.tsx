@@ -30,7 +30,9 @@ export class Timeline extends Component<TimelineProps> {
 						}}
 					>
 						{this.props.context.map((context, index) => <TimelineContext context={context} key={index} />)}
-						{this.props.events.map((event, index) => <TimelineEvent event={event} key={index} />)}
+						{this.props.events
+							.filter((event) => timeline.startDate <= event.date)
+							.map((event, index) => <TimelineEvent event={event} key={index} />)}
 					</svg>
 				</div>
 			</div>

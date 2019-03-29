@@ -1,3 +1,5 @@
+import { IconName, IconPrefix } from "@fortawesome/fontawesome-svg-core";
+
 import { colors } from "./constants";
 
 export enum Category {
@@ -8,73 +10,57 @@ export enum Category {
 	"Projects"
 }
 
-export abstract class Info {
+export class Event {
 	name: string;
 	description: string;
 	link: string | null;
 	category: Category;
+	date: Date;
 
-	constructor(name: string, description: string, link: string | null, category: Category) {
+	constructor(name: string, description: string, link: string | null, category: Category, date: Date) {
 		this.name = name;
 		this.description = description;
 		this.link = link;
 		this.category = category;
-	}
-
-	categoryColor(): string {
-		switch (this.category) {
-			case Category.Biography:
-				return colors.red.default;
-			case Category.Education:
-				return colors.green.default;
-			case Category.Employment:
-				return colors.green.darkest;
-			case Category.Projects:
-				return colors.blue.default;
-			case Category.Publications:
-				return colors.blue.darkest;
-		}
-	}
-
-	abstract priority(): Date;
-}
-
-export class Event extends Info {
-	date: Date;
-
-	constructor(name: string, description: string, link: string | null, category: Category, date: Date) {
-		super(name, description, link, category);
 		this.date = date;
 	}
 
-	priority(): Date {
-		return this.date;
+	getColor(context: Context[]): string {
+		for (let c of context) {
+			if (c.startDate <= this.date && this.date <= c.endDate) {
+				return c.color;
+			}
+		}
+
+		return colors.offBlack;
+	}
+
+	icon(): [IconPrefix, IconName] {
+		switch (this.category) {
+			case Category.Biography:
+				return [ "fas", "heart" ];
+			case Category.Education:
+				return [ "fas", "school" ];
+			case Category.Employment:
+				return [ "fas", "briefcase" ];
+			case Category.Projects:
+				return [ "fas", "palette" ];
+			case Category.Publications:
+				return [ "fas", "newspaper" ];
+		}
 	}
 }
 
-export class Context extends Info {
+export class Context {
+	name: string;
 	startDate: Date;
 	endDate: Date;
 	color: string;
 
-	constructor(
-		name: string,
-		description: string,
-		link: string | null,
-		category: Category,
-		startDate: Date,
-		endDate: Date,
-		color: string
-	) {
-		super(name, description, link, category);
+	constructor(name: string, startDate: Date, endDate: Date, color: string) {
+		this.name = name;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.color = color;
 	}
-
-	priority(): Date {
-		return this.startDate;
-	}
 }
-
-export default Info;

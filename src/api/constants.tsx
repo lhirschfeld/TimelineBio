@@ -32,5 +32,5 @@ export const timeline = {
 	smallRadius: 3,
 	bigRadius: 10,
 	stroke: 0,
-	startDate: new Date(2013, 9, 1)
+	startDate: new Date(2016, 1, 1)
 };

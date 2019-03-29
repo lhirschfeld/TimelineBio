@@ -3,15 +3,23 @@ import Timeline from "./components/timeline/Timeline";
 import TitleBar from "./components/titlebar/TitleBar";
 import DetailList from "./components/details/DetailList";
 
-import { Event, Context, Category, Info } from "./api/info";
+import { Event, Context, Category } from "./api/info";
 import { colors } from "./api/constants";
 import "./App.css";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faFile, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import {
+	faFile,
+	faEnvelope,
+	faSchool,
+	faBriefcase,
+	faPalette,
+	faNewspaper,
+	faHeart
+} from "@fortawesome/free-solid-svg-icons";
 import { faLinkedinIn, faGithub } from "@fortawesome/free-brands-svg-icons";
 
-library.add(faLinkedinIn, faGithub, faFile, faEnvelope);
+library.add(faLinkedinIn, faGithub, faFile, faEnvelope, faSchool, faBriefcase, faPalette, faNewspaper, faHeart);
 
 export interface AppState {
 	events: Event[];
@@ -23,13 +31,13 @@ class App extends Component<{}, AppState> {
 	readonly state: AppState = {
 		events: [
 			new Event(
-				"Early Life",
+				"Background",
 				`I was born in Zefat Israel, and moved to the United States when I was seven months old.
          Since then, I've lived in Massachusetts. I attended The Sage School in Foxboro from K-8,
          and I graduated in June 2013.`,
 				null,
 				Category.Biography,
-				new Date(2013, 11, 20)
+				new Date(1998, 11, 20)
 			),
 			new Event(
 				"Tap Water Violations",
@@ -60,7 +68,7 @@ class App extends Component<{}, AppState> {
          2925 Beatty, 3012 Minsk, and 9060 Toyokawa`,
 				`Measured the quantity of light reflected from three unresearched,
          near-earth asteroids over the course of several months. Collected results to
-         produce two ‘light curves” and predict the asteroids’ orbital periods;
+         produce two "light curves" and predict the asteroids’ orbital periods;
          published in The Minor Planet Bulletin.`,
 				"http://www.minorplanet.info/MPB/issues/MPB_43-3.pdf",
 				Category.Publications,
@@ -85,24 +93,8 @@ class App extends Component<{}, AppState> {
 			)
 		],
 		context: [
-			new Context(
-				"Phillips Academy",
-				"I began attending the Phillips Academy highschool in Andover, Massachussets.",
-				null,
-				Category.Education,
-				new Date(2013, 9, 1),
-				new Date(2017, 9, 1),
-				colors.blue.default
-			),
-			new Context(
-				"MIT",
-				"I began studying Mathematics and Computer Science (courses 6-3 and 18) at MIT.",
-				null,
-				Category.Education,
-				new Date(2017, 9, 1),
-				new Date(2021, 6, 1),
-				colors.red.default
-			)
+			new Context("Phillips Academy", new Date(2013, 9, 1), new Date(2017, 9, 1), colors.blue.default),
+			new Context("MIT", new Date(2017, 9, 1), new Date(2021, 6, 1), colors.red.default)
 		],
 		activeCategory: Category.Biography
 	};
@@ -112,7 +104,7 @@ class App extends Component<{}, AppState> {
 			<div className="App">
 				<TitleBar />
 				<Timeline events={this.state.events} context={this.state.context} />
-				<DetailList info={([] as Info[]).concat(this.state.events).concat(this.state.context)} />
+				<DetailList events={this.state.events} context={this.state.context} />
 			</div>
 		);
 	}
