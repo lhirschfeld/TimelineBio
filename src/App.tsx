@@ -64,12 +64,12 @@ class App extends Component<{}, AppState> {
 				new Date(2017, 9, 17)
 			),
 			new Event(
-				`Finding the Lightcurves and Rotation Periods of
-         2925 Beatty, 3012 Minsk, and 9060 Toyokawa`,
+				"Lightcurves and Rotational Periods",
 				`Measured the quantity of light reflected from three unresearched,
          near-earth asteroids over the course of several months. Collected results to
          produce two "light curves" and predict the asteroids’ orbital periods;
-         published in The Minor Planet Bulletin.`,
+         published in The Minor Planet Bulletin as "Finding the Lightcurves and Rotation Periods of
+         2925 Beatty, 3012 Minsk, and 9060 Toyokawa."`,
 				"http://www.minorplanet.info/MPB/issues/MPB_43-3.pdf",
 				Category.Publications,
 				new Date(2016, 3, 31)
